@@ -21,7 +21,7 @@ var questions = [
     },
     {
         title: "What Is NOT An Example of A Javascript Library?",
-        choices: ["Node.js", "Vue.js", "Skad.js", "JQuery"],
+        choices: ["Node.js", "Vue.js", "Skram.js", "JQuery"],
         answer: "Skad.js"
     }
 ]
