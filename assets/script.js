@@ -9,6 +9,7 @@ var timeEl = document.getElementById('time');
 var questionEl = document.getElementById('question');
 var choicesEl = document.getElementById('choices');
 var questionArea = document.getElementById('question-area');
+var titleArea = document.getElementById('title-area');
 
 
 function startQuiz() {
@@ -16,10 +17,11 @@ function startQuiz() {
         time--;
         timeEl.textContent = time;
         if(time === 0) {
-            endQuiz();
+            postScore();
         }
     },
         1000);
+    titleArea.textContent = "";
     getQuestion();
     startBtn.remove();
 
@@ -39,17 +41,21 @@ function getQuestion() {
         var newBtn = document.createElement("Button");
         newBtn.textContent = choice;
         choicesEl.appendChild(newBtn);
+        newBtn.className = "new-button";
         newBtn.onclick = ansClick;
     }    
 };
 
-function postScore () {
+function postScore() {
     console.log('hello');
     clearInterval(timer);
     questionArea.innerHTML = "";
-
+    titleArea.innerHTML = "Your Score Is " + currentScore;
 }
 
+function postTable() {
+
+}
 function ansClick(e) {
     if(qIndex >= (questions.length - 1)) {
       postScore();
@@ -57,17 +63,15 @@ function ansClick(e) {
         var currentQuestion = questions[qIndex];
         var ansClick = e.target.textContent;
         if(ansClick.toLowerCase() === currentQuestion.answer.toLowerCase()) {
-            console.log("you got it right");
             currentScore++;
-            console.log(currentScore);
         } else {
-            console.log('you got it wrong');
             time -= 10;
         }
         qIndex++;
         getQuestion();
     };
 };
+
 
 startBtn.onclick = () => {
     startQuiz();
