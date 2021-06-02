@@ -10,6 +10,9 @@ var questionEl = document.getElementById('question');
 var choicesEl = document.getElementById('choices');
 var questionArea = document.getElementById('question-area');
 var titleArea = document.getElementById('title-area');
+var scoreArea = document.getElementById('score-area');
+
+var localHS = localStorage.setItem("score", currentScore);
 
 
 function startQuiz() {
@@ -47,15 +50,18 @@ function getQuestion() {
 };
 
 function postScore() {
-    console.log('hello');
     clearInterval(timer);
     questionArea.innerHTML = "";
     titleArea.innerHTML = "Your Score Is " + currentScore;
+    postTable();
 }
 
 function postTable() {
-
+    var newLine = document.createElement("p");
+    newLine.textContent = localHS;
+    scoreArea.appendChild(newLine);
 }
+
 function ansClick(e) {
     if(qIndex >= (questions.length - 1)) {
       postScore();
