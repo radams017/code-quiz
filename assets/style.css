@@ -9,6 +9,19 @@ h2 {
     font-weight: 800;
 }
 
+
+button {
+    cursor: pointer;
+}
+
+a:visited {
+    color: grey;
+}
+
+a:link {
+    color: black;
+}
+
 #container {
     display: flex;
     justify-content: center;
@@ -21,6 +34,7 @@ h2 {
     flex-direction: column;
 }
 
+
 .new-button {
     margin: 4px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -32,12 +46,4 @@ h2 {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     background-color: white;
     border-radius: 1px;
-}
-
-a:visited {
-    color: grey;
-}
-
-a:link {
-    color: black;
 }

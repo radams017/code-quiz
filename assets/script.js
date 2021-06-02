@@ -10,11 +10,9 @@ var questionEl = document.getElementById('question');
 var choicesEl = document.getElementById('choices');
 var questionArea = document.getElementById('question-area');
 var titleArea = document.getElementById('title-area');
-var scoreArea = document.getElementById('score-area');
-
-var localHS = localStorage.setItem("score", currentScore);
 
 
+//begins quiz
 function startQuiz() {
     timer = setInterval(function() {
         time--;
@@ -30,10 +28,7 @@ function startQuiz() {
 
 };
 
-// function endQuiz() {
-//     clearInterval(timer);
-// };
-
+//loads question and creates a button for it
 function getQuestion() {
     var currentQuestion = questions[qIndex];
     questionEl.textContent = currentQuestion.title;
@@ -49,19 +44,16 @@ function getQuestion() {
     }    
 };
 
+
+//ends quiz
 function postScore() {
     clearInterval(timer);
     questionArea.innerHTML = "";
     titleArea.innerHTML = "Your Score Is " + currentScore;
-    postTable();
 }
 
-function postTable() {
-    var newLine = document.createElement("p");
-    newLine.textContent = localHS;
-    scoreArea.appendChild(newLine);
-}
 
+//increments or decrements score based on answer selection
 function ansClick(e) {
     if(qIndex >= (questions.length - 1)) {
       postScore();
@@ -69,16 +61,17 @@ function ansClick(e) {
         var currentQuestion = questions[qIndex];
         var ansClick = e.target.textContent;
         if(ansClick.toLowerCase() === currentQuestion.answer.toLowerCase()) {
-            currentScore++;
+            currentScore+= 5;
         } else {
             time -= 10;
+            currentScore -= 5;
         }
         qIndex++;
         getQuestion();
     };
 };
 
-
+//adds click event to start button that initializes the quiz when clicked
 startBtn.onclick = () => {
     startQuiz();
 }
